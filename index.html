@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Meme Generator</title>
+</head>
+
+<body onload="init()">
+    <ul class="labels-container">
+        <li class="keywords"></li>
+    </ul>
+    <div class="screen" onclick="closeMenu()"></div>
+    <div class="main-container grid">
+        <header class="main-header">
+            <div class="logo">
+                <h1 class="title">Meme Generator</h1>
+                <button class="btn-open-labels" onclick="openLabels()" title="Filter Images">☰</button>
+                <section class="nav-bar flex center space-between">
+                    <a class="main-link" onclick="onOpenGallery()" title="Open gallery">Gallery</a>
+                    <a class="main-link" onclick="onOpenMyMemes()" title="My saved meme">My Memes</a>
+                    <a class="main-link" onclick="onOpenModal()" title="Contact me">About</a>
+                </section>
+        </header>
+        <div class="meme-maker flex display">
+            <canvas id="canvas" width="450" height="450"></canvas>
+            <div class="actions-container"></div>
+
+        </div>
+        <div class="img-container grid"></div>
+        </div>
+        <script src="https://kit.fontawesome.com/1ed641f7ad.js" crossorigin="anonymous"></script>
+        <script src="js/util-service.js"></script>
+        <script src="js/storage-service.js"></script>
+        <script src="js/canvas-controller.js"></script>
+        <script src="js/meme-service.js"></script>
+        <script src="js/gallery-service.js"></script>
+        <script src="js/gallery-controller.js"></script>
+</body>
+
+</html>
