@@ -1,23 +1,29 @@
 'use strict'
 const MEMES_KEY = 'memesDB'
-let gMeme = [];
-let gColor = 'white';
-let gColorLine = 'black';
-let gFontFamily = 'impact';
-let gAlign = 'center';
-let gCurrLine = 0;
-let gId = 0;
-let gLinesNoSticker = 0;
+var gMeme;
+var gColor = 'white';
+var gColorLine = 'black';
+var gFontFamily = 'impact';
+var gAlign = 'center';
+var gCurrLine = 0;
+var gId = 0;
+var gMemes = [];
+var gLinesNoSticker = 0;
 
 function _createMeme(id) {
-    console.log(id);
+    gId = 0;
+    gLinesNoSticker = 0;
+    gColor = 'white';
+    gColorLine = 'black';
+    gFontFamily = 'impact';
+    gAlign = 'center';
     const canvasSize = getCanvasSize();
     const xPos = canvasSize.width / 2;
     const yPos = canvasSize.height / 8;
     let line = createLine(xPos, yPos);
     return {
-        memeId: id,
-        lineIdx: 0,
+        selectedImgId: id,
+        selectedLineIdx: 0,
         lines: [line]
     }
 }
@@ -105,12 +111,34 @@ function removeLine() {
         gMeme.lines.splice(gMeme.selectedLineIdx, 1);
         document.querySelector('.input-text').value = '';
         gMeme.selectedLineIdx = 0;
+        if (!gMeme.lines.length) {
+            addLine();
+        }
     }
 }
+
+function onImgInput(ev) {
+    loadImageFromInput(ev, renderCanvas)
+}
+
+function loadImageFromInput(ev, onImageReady) {
+    document.querySelector('.share-container').innerHTML = ''
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        var img = new Image();
+        img.onload = onImageReady.bind(null, img);
+        img.src = event.target.result;
+        var newImgId = addImg(img.src);
+        var newMeme = creatMeme(newImgId);
+        setMeme(newMeme);
+    }
+    reader.readAsDataURL(ev.target.files[0]);
+}
+
 
 function _saveMemesToStorage(meme) {
     let memes = loadFromStorage(MEMES_KEY);
     if (memes) gMeme = memes;
-    gMeme.push(meme);
+    gMemes.push(meme);
     saveToStorage(MEMES_KEY, gMeme);
 }

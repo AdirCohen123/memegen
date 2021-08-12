@@ -29,7 +29,6 @@ function renderImages() {
 
 function renderKeywords() {
     const keyWords = getKeyWords();
-    console.log('renderKeywords', keyWords);
     let strHtmls = keyWords.map(keyWord => {
         return `<li><a class="a-keyWord" onclick="onKeyWord(this)">${keyWord.label}</a></li>`
     });
@@ -77,7 +76,6 @@ function onOpenGallery() {
 function onFilterKeyWord(keyWord) {
     setFilter(keyWord);
     renderImgByKey(keyWord)
-    closeMenu()
 }
 
 function onRandomImg() {
@@ -114,6 +112,6 @@ function openLabels() {
 
 function closeMenu() {
     document.querySelector('.labels-container').style.display = 'none';
-    document.querySelector('.btn-open-labels').style.display = 'block';
     document.querySelector('.screen').style.display = 'none';
+    document.querySelector('.btn-open-labels').style.display = 'block';
 }

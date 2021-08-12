@@ -27,7 +27,51 @@
         </header>
         <div class="meme-maker flex display">
             <canvas id="canvas" width="450" height="450"></canvas>
-            <div class="actions-container"></div>
+            <div class="actions-container">
+                <input type="text" class="meme-txt input-text" onkeyup="onWrite(this)" onkeypress="onWrite(this)" data-trans="text-placeholder" placeholder="Write something" />
+                <div class="ctrl-btns flex justify-center">
+                    <button class="ctrl-btn fas fa-exchange-alt" onclick="onSwitchLines()" title="Switch"></button>
+                    <button class="ctrl-btn fas fa-arrow-up" onclick="onMoveUp()" title="Up"></button>
+                    <button class="ctrl-btn fas fa-arrow-down" onclick="onMoveDown()" title="Down"></button>
+                    <button class="ctrl-btn fas fa-plus" onclick="onAddLine()" title="Add"></button>
+                    <button class="ctrl-btn fas fa-trash-alt" onclick="onRemoveLine()" title="Delete"></button>
+                </div>
+
+                <div class="edit-font grid">
+                    <label class="btn-size"><input class="range" type="range" id="size" name="size" min="20" max="80" value="40"
+                    onchange="onChangeSize(this.value);" title="Size"/>
+                    </label>
+                    <select class="select-font" name="select-font" onchange="onChangeFont(this)">
+                            <option value="impact">Impact</option>
+                            <option value="poppins">poppins</option>
+                            <option value="righteous">righteous</option>
+                            <option value="permanent-marker">permanent-marker</option>
+                            <option value="alfa-slab">alfa-slab</option>
+                        </select>
+                    <button class="btn-color-fill" onclick="onOpenColors()"><i class="fas fa-palette"></i></button>
+                    <button class="ctrl-btn fa-btn color color-fill display"> <input type="color" id="shape-color" name="contact"
+                    onchange="onChangeColor(this.value)" /></button>
+                </div>
+                <div class="stickers flex space-between">
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">😅</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">😜</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">😍</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">😤</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">😡</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">😂</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">🤐</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">🕶</label>
+                    <label onclick="onCreateSticker(this.innerText)" class="sticker">💩</label>
+                </div>
+
+                <form class="share-btns flex space-between" action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                    <input name="img" id="imgData" type="hidden" />
+                    <a class="share-link" id="share-link" href="#" donload=AwsomemeAAA></a>
+                    <button class="btn three-d btn-share share" type="submit">Publish</button>
+                    <a class="btn three-d btn-share save" href="#" onclick="onSave()">Save</a>
+                    <a class="btn three-d btn-share download" href="#" onclick="onDownload(this)" download="my-img.jpg">Download</a>
+                </form>
+            </div>
 
         </div>
         <div class="img-container grid"></div>

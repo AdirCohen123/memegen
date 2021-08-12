@@ -2,6 +2,36 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: impact;
+    src: url(fonts/impact/impact.ttf);
+}
+
+@font-face {
+    font-family: poppins;
+    src: url(../fonts/poppins/Poppins-Medium.ttf);
+}
+
+@font-face {
+    font-family: alfa-slab;
+    src: url(../fonts/Alfa_Slab_One/AlfaSlabOne-Regular.ttf);
+}
+
+@font-face {
+    font-family: permanent-marker;
+    src: url(../fonts/Permanent_Marker/PermanentMarker-Regular.ttf);
+}
+
+@font-face {
+    font-family: righteous;
+    src: url(../fonts/Righteous/Righteous-Regular.ttf);
+}
+
+@font-face {
+    font-family: pacifico;
+    src: url(../fonts/Pacifico/Pacifico-Regular.ttf);
+}
+
 body {
     margin: 0;
 }
@@ -78,7 +108,7 @@ body {
     border-top-left-radius: 5px;
     box-shadow: -8px 0px 20px rgb(0 0 0 / 15%);
     text-transform: uppercase;
-    /* display: none; */
+    display: none;
     z-index: 10;
 }
 
@@ -136,22 +166,57 @@ body {
     width: 250px;
 }
 
-.ctrl-btns {
-    grid-area: ctrl-btns;
-    height: 30px;
-    width: 30px;
-    justify-content: space-around;
+.ctrl-btn {
+    border-radius: 10px;
+    border: none;
+    width: 55px;
+    height: 45px;
+    font-family: poppins-bold, sans-serif;
+    font-size: 2em;
+    vertical-align: top;
+    border-top: 3px outset;
+    border-bottom: 3px outset;
+    cursor: pointer;
 }
 
-.edit-txt {
-    grid-area: edit-txt;
+.ctrl-btns {
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.ctrl-btns>*:not(:last-child) {
+    margin-inline-end: 20px;
+}
+
+.edit-font {
+    margin-top: 10px;
+    background-color: #093d6e5b;
+    padding: 3px;
+    gap: 10px 15px;
+    grid-template-columns: repeat(5, 1fr);
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.btn-size {
+    background: transparent;
+    padding-top: 10px;
+}
+
+.select-font {
+    border-radius: 10px;
+    vertical-align: top;
+    grid-column: span 4;
+    font-size: 20px;
+    padding-left: 10px;
+}
+
+.color input::-webkit-color-swatch {
+    display: none;
 }
 
 .stickers {
-    grid-area: stickers;
-    grid-column: 1/6;
     overflow-y: auto;
-    align-items: center;
 }
 
 .share-btns {
@@ -159,9 +224,8 @@ body {
 }
 
 .stickers>* {
-    font-size: 2.5rem;
+    font-size: 25px;
     cursor: pointer;
-    padding: 5px;
 }
 
 .sticker-action {
@@ -175,8 +239,51 @@ body {
     padding-top: 10px;
 }
 
+.share-btns {
+    margin-bottom: 20px;
+}
+
+.btn.btn-share {
+    padding: 7px 0;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.25em;
+    font-family: poppins, sans-serif;
+    transition: box-shadow 0.3s;
+    color: white;
+    border-top: 3px outset;
+    border-bottom: 3px outset;
+    margin-top: 17px;
+    text-decoration: none;
+}
+
+.btn.btn-share:focus {
+    box-shadow: 0 0 3px 3px white;
+}
+
+.btn.download {
+    width: 35%;
+    background-color: #8f44bb;
+    border-top-color: #bf84da;
+    border-bottom-color: #9c52c7;
+}
+
+.btn.save {
+    width: 25%;
+    background-color: #57c7e0;
+    border-top-color: #95dcee;
+    border-bottom-color: #5dd0ec;
+}
+
+.btn.share {
+    width: 30%;
+    background-color: #1e7cd3;
+    border-top-color: #65c0f5;
+    border-bottom-color: #3a8fdf;
+}
+
 .range {
-    width: 250px;
+    width: 320px;
 }
 
 .btn-share {
@@ -184,10 +291,7 @@ body {
     border: 0;
     margin: 0 auto;
     font-size: 1.4rem;
-}
-
-.btn-share:hover {
-    background-color: transparent;
+    cursor: pointer;
 }
 
 .btn-font {
@@ -263,6 +367,16 @@ canvas {
     cursor: pointer;
 }
 
+.meme-txt {
+    display: block;
+    font-size: 18px;
+    padding: 8px 0;
+    text-align: center;
+    border-radius: 15px;
+    border: 3px outset;
+    width: 100%;
+}
+
 
 /* HELPERS */
 
@@ -294,8 +408,8 @@ canvas {
         display: none;
     }
     .meme-maker {
-        flex-direction: row;
-        margin-top: 0px;
+        flex-direction: column;
+        margin-top: 70px;
     }
     .actions-container {
         margin-left: 10px;
@@ -303,11 +417,18 @@ canvas {
     }
 }
 
-@media (min-width: 1020px) {
+@media (min-width: 1040px) {
+    canvas {
+        height: 450px;
+        width: 450px;
+    }
+    .meme-maker {
+        flex-direction: row;
+        margin-top: 0px;
+        height: 500px;
+        width: 850px;
+    }
     .labels-container {
         display: block;
-    }
-    .btn-open-labels {
-        display: none;
     }
 }

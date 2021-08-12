@@ -62,12 +62,10 @@ function setFilter(keyWord) {
 }
 
 function addImage() {
-    gImgs.push({
-        id: makeId(),
-        url: this.src,
-        keywords: ['']
-    });
+    let newImg = _createImage(makeId(), this.src, ['all'])
+    gImgs.push(newImg)
     renderImages();
+    _saveImagesToStorage()
 }
 
 function getImages() {
